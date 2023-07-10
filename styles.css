@@ -7,8 +7,13 @@
 
 .card__wrap {
     padding: .3rem;
+    margin-bottom: 3rem;
     min-width: 25%;
     width: 40%;
+    border: 1px solid rgb(16, 16, 52);
+    border-radius: 1rem;
+    box-shadow: 1px 5px 5px 6px rgb(16, 16, 52), 0 0 0 5px rgb(16, 16, 52);
+
 }
 
 img {
@@ -16,9 +21,17 @@ img {
     max-width: 100%;
 }
 
+.stars {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
 .card__starWrap {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -107,8 +107,6 @@ function createHeroCard (superhero) {
                 <div class="card__img-wrap">
                     <img src="${superhero.url}" alt="${superhero.name}">
                 </div>
-                <div class="stars" id="stars--${superhero.name}">
-                </div>
             </article>`;
     heroDiv.innerHTML = heroCard;
     return heroDiv;
@@ -119,7 +117,7 @@ function createStars (superhero) {
     const starsId = `stars--${superhero.name}`;
     const starPicWrap = document.createElement('div');
     starPicWrap.setAttribute('class', 'card__starWrap');
-    starPicWrap.setAttribute('id', starsId);
+    starPicWrap.classList.add(starsId.replace(/\s/g, ""));
     for (let i = 0; i < 5; i += 1) {
         const imgElement = document.createElement('img');
         imgElement.setAttribute('src', 'star.svg');
@@ -130,12 +128,39 @@ function createStars (superhero) {
     return starPicWrap;
 }
 
+// Собираем всё вместе на странице
 for (const superhero of dataObj) {
     const heroDiv = createHeroCard(superhero);
     cards.append(heroDiv);
     const starPicWrap = createStars(superhero);
     const starsId = `stars--${superhero.name}`;
     const stars = document.getElementById(starsId);
-    stars.append(starPicWrap);
-
+    
+    heroDiv.append(starPicWrap);
 }
+// Записываем рейтинг в Local Storage
+
+// Задаём поведение звёздам
+
+const stars = Array.from(document.querySelectorAll('.card__starWrap'));
+//const starsContainers = stars.map((elem) => elem.childNodes)
+console.log(stars);
+//console.log(starsContainers);
+
+function colorStarsNumber (){
+    document.onmouseover = function(e) {
+        let heroStars;
+        console.log(e.target.classList.contains('card__starWrap'));
+        if (e.target.classList.contains('card__starWrap')) {
+            heroStars = e.target;
+            console.log(heroStars);
+
+            // const starsWrap = document.getElementById(heroStars);
+            // const starsSet = Array.from(starsWrap.childNodes);
+            // console.log(starsSet);
+        }
+    }
+}
+
+stars.forEach((elem)=> elem.addEventListener('mouseover', colorStarsNumber));
+
