@@ -1,0 +1,24 @@
+.cards__container {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card__wrap {
+    padding: .3rem;
+    min-width: 25%;
+    width: 40%;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.card__starWrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
