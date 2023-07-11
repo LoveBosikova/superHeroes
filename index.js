@@ -83,10 +83,10 @@ function setStarsColor(elem){
         console.log(star.id);
         if (star.id <= heroRating) {
             star.src = 'activeStar.svg';
+            star.style.width = '100%';
             console.log(star);
-            // star.src = 'activeStar.svg'
-            // console.log(heroAllStars[+star]);
-            // heroAllStars[+star].setAttribute('src', 'activeStar.svg');
+        } else {
+            star.src = 'star.svg';
         }
     }
 }
