@@ -1,7 +1,5 @@
 const cards = document.querySelector('.cards__container');
 const dataObj = JSON.parse(JSON.stringify(data));
-
-dataObj.forEach((hero) => console.log(hero.id));
 console.log(dataObj);
 
 // Создаём карточку героя
@@ -49,25 +47,9 @@ for (const superhero of dataObj) {
     
     heroDiv.append(starPicWrap);
 }
-// Записываем рейтинг в Local Storage
 
 // Задаём поведение звёздам
-
 const stars = Array.from(document.querySelectorAll('.card__starWrap'));
-
-console.log(stars);
-//console.log(starsContainers);
-
-for (const star of stars) {
-    star.addEventListener('click', saveRating)
-}
-
-function saveRating(elem){
-    let heroRating = elem.target.id;
-    const [, hero] = elem.target.parentNode.id.split('--');
-    window.localStorage.setItem(hero, heroRating);
-    console.log(localStorage);
-}
 
 for (const star of stars) {
     star.addEventListener('click', setStarsColor)
@@ -77,21 +59,45 @@ function setStarsColor(elem){
     let heroRating = elem.target.id;
     const hero = elem.target.parentNode;
     const heroAllStars = Array.from(hero.children);
-    console.log(heroAllStars);
     for (const star of heroAllStars) {
-        console.log(star);
-        console.log(star.id);
         if (star.id <= heroRating) {
             star.src = 'activeStar.svg';
             star.style.width = '100%';
-            console.log(star);
         } else {
             star.src = 'star.svg';
         }
     }
 }
+// Работаем с Local Storage
+function saveRating(elem){
+    let heroRating = elem.target.id;
+    const [, hero] = elem.target.parentNode.id.split('--');
+    window.localStorage.setItem(hero, heroRating);
+    console.log(localStorage);
+}
 
+for (const star of stars) {
+    star.addEventListener('click', saveRating)
+}
 
+// Устанавливаем старые значения рейтинга при перегрузке страницы
+function normalizeName (name) {
+    return name.replace(/\s/g, "");
+}
 
-//stars.forEach((elem)=> elem.addEventListener('mouseover', countRating));
-
+for (const hero of dataObj) {
+    const normalizedHero = normalizeName(hero.name);
+    if (window.localStorage.getItem(normalizedHero)) {
+        const heroId = `stars--${normalizedHero}`
+        const heroAllStars =Array.from(document.getElementById(heroId).children);
+        const heroRating = window.localStorage.getItem(normalizedHero);
+        for (const star of heroAllStars) {
+            if (star.id <= heroRating) {
+                star.src = 'activeStar.svg';
+                star.style.width = '100%';
+            } else {
+                star.src = 'star.svg';
+            }
+        }
+    }
+}
