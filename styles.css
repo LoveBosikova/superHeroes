@@ -49,5 +49,16 @@ img {
     margin-right: auto;
 }
 
-/* font-family: 'Geologica', sans-serif;
-font-family: 'Russo One', sans-serif; */
+@media (max-width: 720px) {
+    .card__wrap {
+        min-width: 25%;
+        width: 90%;
+    }
+}
+
+@media (max-width: 450px) {
+    .card__wrap {
+        min-width: 25%;
+        width: 97.5%;
+    }
+}

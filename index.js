@@ -1,6 +1,5 @@
 const cards = document.querySelector('.cards__container');
 const dataObj = JSON.parse(JSON.stringify(data));
-console.log(dataObj);
 
 // Создаём карточку героя
 function createHeroCard (superhero) {
@@ -73,7 +72,6 @@ function saveRating(elem){
     let heroRating = elem.target.id;
     const [, hero] = elem.target.parentNode.id.split('--');
     window.localStorage.setItem(hero, heroRating);
-    console.log(localStorage);
 }
 
 for (const star of stars) {
